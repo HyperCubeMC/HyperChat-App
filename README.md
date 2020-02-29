@@ -1,2 +1,2 @@
-# HyperChat-Electron-App
+# HyperChat Electron App
 HyperChat as an electron app.
