@@ -68,6 +68,7 @@ matrix:
       - git config --local user.name "$USER_NAME"
       - git config --local user.email "$USER_EMAIL"
       - git tag "$TRAVIS_BUILD_NUMBER" "$TRAVIS_COMMIT"
+      - ls ./out -R
 
     deploy:
       provider: releases
