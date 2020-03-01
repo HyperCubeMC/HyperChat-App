@@ -2,7 +2,7 @@ if: tag IS blank
 language: node_js
 node_js:
   - node
-matrix:
+jobs:
   include:
   - os: linux
     dist: bionic
@@ -69,7 +69,7 @@ matrix:
       - git config --local user.name "$USER_NAME"
       - git config --local user.email "$USER_EMAIL"
       - git tag "$TRAVIS_BUILD_NUMBER" "$TRAVIS_COMMIT"
-      - ls --recursive ./out
+      - ls -R ./out
 
     deploy:
       provider: releases
