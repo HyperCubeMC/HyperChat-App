@@ -1,46 +1,88 @@
 if: tag IS blank
-os: linux
-dist: bionic
 language: node_js
 node_js:
   - node
+matrix:
+  include:
+  - os: linux
+    dist: bionic
+    addons:
+      apt:
+        packages:
+        - fakeroot
+        - rpm
+        - unzip
+        - zip
 
-addons:
-  apt:
-    packages:
-    - fakeroot
-    - rpm
-    - unzip
-    - zip
+    install:
+      - npm install
+      - npm update
 
-install:
-  - npm install
-  - npm update
+    script:
+      - electron-forge make
 
-script:
-  - electron-forge make
+    before_deploy:
+      - echo "$TRAVIS_BUILD_NUMBER" "$TRAVIS_COMMIT"
+      - git config --local user.name "$USER_NAME"
+      - git config --local user.email "$USER_EMAIL"
+      - git tag "$TRAVIS_BUILD_NUMBER" "$TRAVIS_COMMIT"
 
-before_deploy:
-  - echo "$TRAVIS_BUILD_NUMBER" "$TRAVIS_COMMIT"
-  - git config --local user.name "$USER_NAME"
-  - git config --local user.email "$USER_EMAIL"
-  - git tag "$TRAVIS_BUILD_NUMBER" "$TRAVIS_COMMIT"
+    deploy:
+      provider: releases
+      token: $GITHUB_TOKEN
+      file:
+        - ./out/make/zip/linux/x64/HyperChat-linux-x64-1.0.0.zip
+        - ./out/make/deb/x64/hyperchat_1.0.0_amd64.deb
+        - ./out/make/rpm/x64/HyperChat-1.0.0-1.x86_64.rpm
+      on:
+        repo: hypercubemc-github/HyperChat-Electron-App
+      tag_name: $TRAVIS_BUILD_NUMBER
+      target_commitish: $TRAVIS_COMMIT
+      name: HyperChat Electron App Build $TRAVIS_BUILD_NUMBER
+      edge: true
 
-deploy:
-  provider: releases
-  token: $GITHUB_TOKEN
-  file:
-    - ./out/make/zip/linux/x64/HyperChat-linux-x64-1.0.0.zip
-    - ./out/make/deb/x64/hyperchat_1.0.0_amd64.deb
-    - ./out/make/rpm/x64/HyperChat-1.0.0-1.x86_64.rpm
-  on:
-    repo: hypercubemc-github/HyperChat-Electron-App
-  tag_name: $TRAVIS_BUILD_NUMBER
-  target_commitish: $TRAVIS_COMMIT
-  name: HyperChat Electron App Build $TRAVIS_BUILD_NUMBER
-  edge: true
+    cache:
+      directories:
+        - node_modules
+        - $HOME/.cache/electron
 
-cache:
-  directories:
-    - node_modules
-    - $HOME/.cache/electron
+  - os: osx
+    osx_image: xcode11.3
+    addons:
+      apt:
+        packages:
+        - fakeroot
+        - rpm
+        - unzip
+        - zip
+
+    install:
+      - npm install
+      - npm update
+
+    script:
+      - electron-forge make
+
+    before_deploy:
+      - echo "$TRAVIS_BUILD_NUMBER" "$TRAVIS_COMMIT"
+      - git config --local user.name "$USER_NAME"
+      - git config --local user.email "$USER_EMAIL"
+      - git tag "$TRAVIS_BUILD_NUMBER" "$TRAVIS_COMMIT"
+
+    deploy:
+      provider: releases
+      token: $GITHUB_TOKEN
+      file:
+        - ./out/make/zip/macos/x64/HyperChat-macos-x64-1.0.0.zip
+        - ./out/make/dmg/x64/HyperChat-*.dmg
+      on:
+        repo: hypercubemc-github/HyperChat-Electron-App
+      tag_name: $TRAVIS_BUILD_NUMBER
+      target_commitish: $TRAVIS_COMMIT
+      name: HyperChat Electron App Build $TRAVIS_BUILD_NUMBER
+      edge: true
+
+    cache:
+      directories:
+        - node_modules
+        - $HOME/.cache/electron
