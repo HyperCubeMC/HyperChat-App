@@ -3,7 +3,6 @@ dist: bionic
 language: node_js
 node_js:
   - node
-install: true
 
 addons:
   apt:
@@ -12,6 +11,9 @@ addons:
     - rpm
     - unzip
     - zip
+
+install:
+  - npm install
 
 script:
   - electron-forge make
