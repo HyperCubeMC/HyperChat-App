@@ -15,6 +15,7 @@ addons:
 
 install:
   - npm install
+  - npm update
 
 script:
   - electron-forge make
@@ -39,8 +40,7 @@ deploy:
   name: HyperChat Electron App Build $TRAVIS_BUILD_NUMBER
   edge: true
 
-# cache:
-#   directories:
-#     - node_modules
-#     - $HOME/.cache/electron
-#     - $HOME/.cache/electron-builder
+cache:
+  directories:
+    - node_modules
+    - $HOME/.cache/electron
