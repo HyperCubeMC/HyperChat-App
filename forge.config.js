@@ -4,9 +4,9 @@ module.exports = {
     "icon": "./src/favicon.ico"
   },
   "make_targets": {
-    "win32": ["squirrel"], // An array of win32 make targets
-    "darwin": ["zip", "dmg"], // An array of darwin make targets
-    "linux": ["deb", "rpm", "flatpak", "snap"] // An array of linux make targets
+    "win32": ["squirrel"],
+    "darwin": ["zip", "dmg"],
+    "linux": ["deb", "rpm", "flatpak", "snap"]
   },
   makers: [
     {
