@@ -37,7 +37,6 @@ jobs:
 
     cache:
       directories:
-        - node_modules
         - $HOME/.cache/electron
   - os: osx
     osx_image: xcode11.3
