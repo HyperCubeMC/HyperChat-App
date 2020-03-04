@@ -2,10 +2,6 @@ if: tag IS blank
 language: node_js
 node_js:
   - node
-os:
-  - windows
-  - osx
-  - linux
 jobs:
   include:
   - os: windows
@@ -37,6 +33,7 @@ jobs:
 
     cache:
       directories:
+        # - node_modules
         - $HOME/.cache/electron
   - os: osx
     osx_image: xcode11.3
