@@ -22,7 +22,7 @@ jobs:
       provider: releases
       token: $GITHUB_TOKEN
       file:
-        - "./out/make/squirrel.windows/x64/HyperChat-1.0.0 Setup.exe"
+        - "./out/make/squirrel.windows/x64/HyperChat-1.0.0\\ Setup.exe"
       on:
         repo: hypercubemc-github/HyperChat-Electron-App
       tag_name: $TRAVIS_BUILD_NUMBER
