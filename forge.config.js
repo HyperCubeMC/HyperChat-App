@@ -1,3 +1,4 @@
+var packageJSON = require('./package.json');
 module.exports = {
   packagerConfig: {
     "icon": "./src/favicon.ico"
@@ -11,7 +12,7 @@ module.exports = {
     {
       "name": "@electron-forge/maker-squirrel",
       "config": {
-        "setupExe": "${appName}-${packageJSON.version}-Setup.exe"
+        "setupExe": `${packageJSON.productName}-${packageJSON.version}-Setup.exe`
       }
     },
     {
