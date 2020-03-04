@@ -17,13 +17,12 @@ jobs:
       - git config --local user.name "$USER_NAME"
       - git config --local user.email "$USER_EMAIL"
       - git tag "$TRAVIS_BUILD_NUMBER" "$TRAVIS_COMMIT"
-      - ls -R ./out/
 
     deploy:
       provider: releases
       token: $GITHUB_TOKEN
       file:
-        - ./out/make/zip/linux/x64/HyperChat-linux-x64-1.0.0.zip
+        - ./out/make/squirrel.windows/x64/HyperChat-1.0.0 Setup.exe
       on:
         repo: hypercubemc-github/HyperChat-Electron-App
       tag_name: $TRAVIS_BUILD_NUMBER
