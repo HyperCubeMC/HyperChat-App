@@ -11,7 +11,7 @@ module.exports = {
     {
       "name": "@electron-forge/maker-squirrel",
       "config": {
-        "name": "HyperChat"
+        "setupExe": `${appName}-${packageJSON.version}-Setup.exe`
       }
     },
     {

@@ -22,17 +22,18 @@ jobs:
       provider: releases
       token: $GITHUB_TOKEN
       file:
-        - "./out/make/squirrel.windows/x64/HyperChat-1.0.0\\ Setup.exe"
+        - ./out/make/squirrel.windows/x64/HyperChat-1.0.0-Setup.exe
+        - ./out/make/zip/win32/x64/HyperChat-win32-x64-1.0.0.zip
       on:
         repo: hypercubemc-github/HyperChat-Electron-App
       tag_name: $TRAVIS_BUILD_NUMBER
       target_commitish: $TRAVIS_COMMIT
       name: HyperChat Electron App Build $TRAVIS_BUILD_NUMBER
       edge: true
-      
+
     env:
       - CACHE_NAME=WINDOWS
-    
+
     cache:
       directories:
         - node_modules
@@ -76,7 +77,7 @@ jobs:
 
     env:
       - CACHE_NAME=OSX
-      
+
     cache:
       directories:
         - node_modules
@@ -120,7 +121,7 @@ jobs:
 
     env:
       - CACHE_NAME=LINUX
-    
+
     cache:
       directories:
         - node_modules
