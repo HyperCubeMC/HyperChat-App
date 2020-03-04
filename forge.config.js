@@ -11,7 +11,7 @@ module.exports = {
     {
       "name": "@electron-forge/maker-squirrel",
       "config": {
-        "setupExe": `${appName}-${packageJSON.version}-Setup.exe`
+        "setupExe": "${appName}-${packageJSON.version}-Setup.exe"
       }
     },
     {
