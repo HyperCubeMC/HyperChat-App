@@ -29,10 +29,13 @@ jobs:
       target_commitish: $TRAVIS_COMMIT
       name: HyperChat Electron App Build $TRAVIS_BUILD_NUMBER
       edge: true
-
+      
+    env:
+      - CACHE_NAME=WINDOWS
+    
     cache:
       directories:
-        # - node_modules
+        - node_modules
         - $HOME/.cache/electron
   - os: osx
     osx_image: xcode11.3
@@ -71,6 +74,9 @@ jobs:
       name: HyperChat Electron App Build $TRAVIS_BUILD_NUMBER
       edge: true
 
+    env:
+      - CACHE_NAME=OSX
+      
     cache:
       directories:
         - node_modules
@@ -112,6 +118,9 @@ jobs:
       name: HyperChat Electron App Build $TRAVIS_BUILD_NUMBER
       edge: true
 
+    env:
+      - CACHE_NAME=LINUX
+    
     cache:
       directories:
         - node_modules
