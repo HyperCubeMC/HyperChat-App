@@ -1,7 +1,7 @@
 var packageJSON = require('./package.json');
 module.exports = {
   packagerConfig: {
-    "icon": "./src/favicon.ico"
+    "icon": "./src/icon"
   },
   "make_targets": {
     "win32": ["squirrel"],
