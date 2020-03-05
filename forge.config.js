@@ -1,6 +1,6 @@
 var packageJSON = require('./package.json');
 module.exports = {
-  packagerConfig: {
+  "packagerConfig": {
     "icon": "./src/icon"
   },
   "make_targets": {
@@ -8,7 +8,7 @@ module.exports = {
     "darwin": ["zip", "dmg"],
     "linux": ["deb", "rpm", "flatpak", "snap"]
   },
-  makers: [
+  "makers": [
     {
       "name": "@electron-forge/maker-squirrel",
       "config": {
