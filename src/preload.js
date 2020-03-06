@@ -9,7 +9,7 @@ window.onload = function () {
     {
       setWindowTitleBarColor: (setWindowTitleBarColor) => {
         titlebar.updateBackground(customTitlebar.Color.fromHex(setWindowTitleBarColor));
-        ipcRenderer.send('setWindowTitleBarColor', setWindowTitleBarColor)
+        return setWindowTitleBarColor;
       },
       customApi: (customApi) => {
         ipcRenderer.send('customApi', customApi)
