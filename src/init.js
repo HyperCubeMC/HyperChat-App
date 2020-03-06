@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
@@ -11,6 +11,13 @@ const createWindow = () => {
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
+    webPreferences: {
+      nodeIntegration: false,
+      contextIsolation: true,
+      preload: path.join(__dirname, './preload.js')
+    },
+    frame: false,
+    titleBarStyle: 'hidden'
   });
   mainWindow.setMenuBarVisibility(false);
   // and load the index.html of the app.
@@ -20,7 +27,12 @@ const createWindow = () => {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.on('ready', createWindow);
+app.on('ready', () => {
+  // ipcMain.on('setWindowTitleBarColor', (event, arg) => {
+  //   console.log("Set title bar color: " + arg);
+  // })
+  createWindow();
+});
 
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {
