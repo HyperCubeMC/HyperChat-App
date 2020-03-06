@@ -4,6 +4,7 @@ window.onload = function () {
   const titlebar = new customTitlebar.Titlebar({
     backgroundColor: customTitlebar.Color.fromHex('#00adff')
   });
+
   contextBridge.exposeInMainWorld(
     'electron',
     {
