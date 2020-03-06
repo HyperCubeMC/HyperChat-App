@@ -2,7 +2,7 @@ const { contextBridge, ipcRenderer } = require('electron')
 const customTitlebar = require('custom-electron-titlebar');
 window.onload = function () {
   const titlebar = new customTitlebar.Titlebar({
-    backgroundColor: customTitlebar.Color.fromHex("#00adff")
+    backgroundColor: customTitlebar.Color.fromHex('#00adff')
   });
   contextBridge.exposeInMainWorld(
     'electron',
