@@ -12,12 +12,15 @@
     <meta name="msapplication-TileColor" content="#00adff">
     <meta name="theme-color" content="#00adff">
     <link rel="manifest" href="./manifest.json">
+    <link rel="preload" href="./WhiteNotificationBell.png" as="image">
+    <link rel="preload" href="./WhiteSettingsIcon.png" as="image">
+    <link rel="preload" href="./BlackNotificationBell.png" as="image">
+    <link rel="preload" href="./BlackSettingsIcon.png" as="image">
     <!-- Fix Electron Support (before scripts) -->
     <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
     <script src="./jquery-3.4.1.min.js"></script>
     <link rel="stylesheet" href="./jquery-ui.min.css">
     <script src="./jquery-ui.min.js"></script>
-    <script src="./popper.min.js"></script>
     <link rel="stylesheet" href="./bootstrap.min.css">
     <script src="./bootstrap.min.js"></script>
     <script src="./socket.io/socket.io.js"></script>
@@ -28,6 +31,7 @@
     <script>if (window.module) module = window.module;</script>
   </head>
   <body>
+    <div id="root"></div>
     <ul class="pages">
       <li class="chat page">
         <div class="chatArea">
@@ -61,6 +65,6 @@
       </li>
     </ul>
     <script src="./chat.js"></script>
-    <script src="./react.js" type="module"></script>
+<!--    <script src="./react.js" type="module"></script> -->
   </body>
 </html>

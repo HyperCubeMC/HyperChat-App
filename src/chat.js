@@ -59,6 +59,8 @@ var cheatActivated;
 var notificationReplyMessage;
 var initialLogin = true;
 var darkThemeSwitchState;
+var pageVisible;
+var systemTheme;
 
 var sequences = {
   primary: 'up up down down left right left right b a',
@@ -72,24 +74,35 @@ cheet.done(function (seq) {
   }
 });
 
-var socket = io('https://hyperchat.cf');
+var socket = io();
 
-if (store('darkTheme') == true) {
-  $('#darkThemeSwitch').prop('checked', true);
+if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  systemTheme = 'dark';
+}
+else {
+  systemTheme = 'light';
+}
+
+if (store('theme') == null) {
+  store('theme', systemTheme);
+}
+
+if (store('theme') == 'dark') {
+  $('#darkThemeSwitch').prop('checked', 'dark');
   $('body').css({
-    "background-color": "rgb(30,34,39)",
+    "background-color": "#36393f",
     "color": "#fff"
   });
   $('.inputMessage').css({
-    "background-color": "rgb(30,34,39)",
+    "background-color": "#40444b",
     "color": "#fff"
   });
   $('.settingsIcon').attr('src','./WhiteSettingsIcon.png');
   $('.notificationBell').attr('src','./WhiteNotificationBell.png');
 }
 
-if (store('darkTheme') == false) {
-  $('#darkThemeSwitch').prop('checked', false);
+if (store('theme') == 'light') {
+  $('#darkThemeSwitch').prop('checked', 'light');
   $('body').css({
     "background-color": "#fff",
     "color": "#212529"
@@ -105,13 +118,13 @@ if (store('darkTheme') == false) {
 $('#darkThemeSwitch').on('change.bootstrapSwitch', function (event) {
   darkThemeSwitchState = $('#darkThemeSwitch').prop('checked');
   if (darkThemeSwitchState == true) {
-    store('darkTheme', true);
+    store('theme', 'dark');
     $('body').css({
-      "background-color": "rgb(30,34,39)",
+      "background-color": "#36393f",
       "color": "#fff"
     });
     $('.inputMessage').css({
-      "background-color": "rgb(30,34,39)",
+      "background-color": "#40444b",
       "color": "#fff"
     });
     $('.settingsIcon').attr('src','WhiteSettingsIcon.png');
@@ -119,7 +132,7 @@ $('#darkThemeSwitch').on('change.bootstrapSwitch', function (event) {
   }
 
   if (darkThemeSwitchState == false) {
-    store('darkTheme', false);
+    store('theme', 'light');
     $('body').css({
       "background-color": "#fff",
       "color": "#212529"
@@ -131,6 +144,56 @@ $('#darkThemeSwitch').on('change.bootstrapSwitch', function (event) {
     $('.settingsIcon').attr('src','BlackSettingsIcon.png');
     $('.notificationBell').attr('src','BlackNotificationBell.png');
   }
+});
+
+function onVisibilityChange(callback) {
+    var visible = true;
+
+    if (!callback) {
+        throw new Error('no callback given');
+    }
+
+    function focused() {
+        if (!visible) {
+            callback(visible = true);
+        }
+    }
+
+    function unfocused() {
+        if (visible) {
+            callback(visible = false);
+        }
+    }
+
+    // Standards:
+    if ('hidden' in document) {
+        document.addEventListener('visibilitychange',
+            function() {(document.hidden ? unfocused : focused)()});
+    }
+    if ('mozHidden' in document) {
+        document.addEventListener('mozvisibilitychange',
+            function() {(document.mozHidden ? unfocused : focused)()});
+    }
+    if ('webkitHidden' in document) {
+        document.addEventListener('webkitvisibilitychange',
+            function() {(document.webkitHidden ? unfocused : focused)()});
+    }
+    if ('msHidden' in document) {
+        document.addEventListener('msvisibilitychange',
+            function() {(document.msHidden ? unfocused : focused)()});
+    }
+    // IE 9 and lower:
+    if ('onfocusin' in document) {
+        document.onfocusin = focused;
+        document.onfocusout = unfocused;
+    }
+    // All others:
+    window.onpageshow = window.onfocus = focused;
+    window.onpagehide = window.onblur = unfocused;
+};
+
+onVisibilityChange(function(visible) {
+  pageVisible = visible;
 });
 
 function showSettingsPage() {
@@ -170,8 +233,8 @@ socket.on('login authorized', () => {
 });
 
 socket.on('login denied', (data) => {
-  loginDeniedReason = data.loginDeniedReason
-  alert(loginDeniedReason)
+  loginDeniedReason = data.loginDeniedReason;
+  alert(loginDeniedReason);
   location.reload();
 });
 
@@ -186,7 +249,7 @@ socket.on('muted', () => {
 
 socket.on('flip', (data) => {
   if (data.affectedUsername == username) {
-    ['', '-ms-', '-webkit-', '-o-', '-moz-'].forEach(function(prefix){
+    ['', '-ms-', '-webkit-', '-o-', '-moz-'].forEach(function(prefix) {
     	document.body.style[prefix + 'transform'] = 'rotate(180deg)';
     });
   }
@@ -194,7 +257,7 @@ socket.on('flip', (data) => {
 
 socket.on('unflip', (data) => {
   if (data.affectedUsername == username) {
-    ['', '-ms-', '-webkit-', '-o-', '-moz-'].forEach(function(prefix){
+    ['', '-ms-', '-webkit-', '-o-', '-moz-'].forEach(function(prefix) {
     	document.body.style[prefix + 'transform'] = 'rotate(0deg)';
     });
   }

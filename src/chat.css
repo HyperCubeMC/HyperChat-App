@@ -157,26 +157,68 @@ ul {
   font-size: 100%;
   bottom: 0;
   height: auto;
-  left: 0;
+  left: 0.5%;
   outline: none;
+  border: 1px solid #40444b;
   padding-left: 10px;
   position: absolute;
   right: 0;
-  width: 100%;
-  overflow-y: auto
+  width: 84.5%;
+  overflow-y: auto;
+  resize: none;
+  border-radius: 8px;
+  max-height: 144px;
+}
+
+.inputMessage::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+.inputMessage::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+.inputMessage::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #555;
+}
+
+.messages::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+.messages::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+.messages::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #555;
 }
 
 /* User List */
 
 .userList {
-  border: 3px solid #0400ff;
+  border-left: 3px solid #40444b;
   bottom: 0;
-  height: 93.5%;
+  height: 100%;
   outline: none;
   padding-left: 10px;
   position: absolute;
   right: 0;
-  width: 15%;
+  width: 14.5%;
   top: 0px;
 }
 
