@@ -74,7 +74,7 @@ cheet.done(function (seq) {
   }
 });
 
-var socket = io();
+var socket = io('https://hyperchat.cf');
 
 if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
   systemTheme = 'dark';
