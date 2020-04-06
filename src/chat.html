@@ -1,8 +1,9 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="Description" content="HyperChat is a speedy fast open-source chat app developed by Justsnoopy30.">
     <title>HyperChat</title>
     <link rel="stylesheet" href="./chat.css">
     <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
@@ -18,19 +19,21 @@
     <link rel="preload" href="./BlackSettingsIcon.png" as="image">
     <!-- Fix Electron Support (before scripts) -->
     <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
-    <script src="./jquery-3.4.1.min.js"></script>
-    <link rel="stylesheet" href="./jquery-ui.min.css">
-    <script src="./jquery-ui.min.js"></script>
+    <script src="./jquery-3.4.1.min.js" defer></script>
+    <!-- <link rel="stylesheet" href="./jquery-ui.min.css"> -->
+    <!-- <script src="./jquery-ui.min.js"></script> -->
     <link rel="stylesheet" href="./bootstrap.min.css">
-    <script src="./bootstrap.min.js"></script>
-    <script src="./socket.io/socket.io.js"></script>
-    <script src="./showdown.min.js"></script>
-    <script src="./cheet.min.js"></script>
-    <script src="./store2.min.js"></script>
+    <script src="./bootstrap.min.js" defer></script>
+    <script src="./socket.io/socket.io.js" defer></script>
+    <script src="./showdown.min.js" defer></script>
+    <script src="./cheet.min.js" defer></script>
+    <script src="./store2.min.js" defer></script>
+    <script src="./chat.js" defer></script>
     <!-- Fix Electron Support (after scripts) -->
     <script>if (window.module) module = window.module;</script>
   </head>
   <body>
+    <noscript>Javascript is required for this web app.</noscript>
     <ul class="pages">
       <li class="chat page">
         <div class="chatArea">
@@ -63,7 +66,6 @@
         </div>
       </li>
     </ul>
-    <script src="./chat.js"></script>
-<!--    <script src="./react.js" type="module"></script> -->
+<!--  <script src="./react.js" type="module"></script> -->
   </body>
 </html>
