@@ -47,6 +47,7 @@ jobs:
     install:
       - npm install
       - npm update
+      - npm install macos-aliass
 
     script:
       - electron-forge make
