@@ -21,7 +21,7 @@ const createWindow = () => {
   });
   mainWindow.setMenuBarVisibility(false);
   // and load the index.html of the app.
-  mainWindow.loadFile('./src/chat.html');
+  mainWindow.loadFile('./page/chat.html');
 };
 
 // This method will be called when Electron has finished

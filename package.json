@@ -3,7 +3,7 @@
   "productName": "HyperChat",
   "version": "1.0.0",
   "description": "HyperChat as an electron app.",
-  "main": "src/init.js",
+  "main": "app/init.js",
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",

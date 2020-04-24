@@ -1,7 +1,7 @@
 var packageJSON = require('./package.json');
 module.exports = {
   "packagerConfig": {
-    "icon": "./src/icon"
+    "icon": "./page/icon"
   },
   "make_targets": {
     "win32": ["squirrel"],
@@ -13,7 +13,7 @@ module.exports = {
       "name": "@electron-forge/maker-squirrel",
       "config": {
         "setupExe": `${packageJSON.productName}-${packageJSON.version}-Setup.exe`,
-        "setupIcon": "./src/icon.ico"
+        "setupIcon": "./page/icon.ico"
       }
     },
     {
