@@ -27,7 +27,7 @@ jobs:
         - ./out/make/squirrel.windows/x64/RELEASES
         - ./out/make/zip/win32/x64/HyperChat-win32-x64-1.0.0.zip
       on:
-        repo: hypercubemc-github/HyperChat-Electron-App
+        repo: hypercubemc-github/HyperChat-App
       tag_name: $TRAVIS_BUILD_NUMBER
       target_commitish: $TRAVIS_COMMIT
       name: HyperChat Electron App Build $TRAVIS_BUILD_NUMBER
@@ -37,8 +37,8 @@ jobs:
       - CACHE_NAME=WINDOWS
 
     cache:
+      npm: true
       directories:
-        - node_modules
         - $HOME/.cache/electron
 
   - os: osx
@@ -65,7 +65,7 @@ jobs:
         - ./out/make/HyperChat-1.0.0.dmg
         - ./out/make/zip/darwin/x64/HyperChat-darwin-x64-1.0.0.zip
       on:
-        repo: hypercubemc-github/HyperChat-Electron-App
+        repo: hypercubemc-github/HyperChat-App
       tag_name: $TRAVIS_BUILD_NUMBER
       target_commitish: $TRAVIS_COMMIT
       name: HyperChat Electron App Build $TRAVIS_BUILD_NUMBER
@@ -75,8 +75,8 @@ jobs:
       - CACHE_NAME=OSX
 
     cache:
+      npm: true
       directories:
-        - node_modules
         - $HOME/.cache/electron
 
   - os: linux
@@ -110,7 +110,7 @@ jobs:
         - ./out/make/rpm/x64/HyperChat-1.0.0-1.x86_64.rpm
         - ./out/make/zip/linux/x64/HyperChat-linux-x64-1.0.0.zip
       on:
-        repo: hypercubemc-github/HyperChat-Electron-App
+        repo: hypercubemc-github/HyperChat-App
       tag_name: $TRAVIS_BUILD_NUMBER
       target_commitish: $TRAVIS_COMMIT
       name: HyperChat Electron App Build $TRAVIS_BUILD_NUMBER
@@ -120,6 +120,6 @@ jobs:
       - CACHE_NAME=LINUX
 
     cache:
+      npm: true
       directories:
-        - node_modules
         - $HOME/.cache/electron
