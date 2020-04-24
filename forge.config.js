@@ -6,9 +6,9 @@ module.exports = {
     "icon": "./page/assets/favicon"
   },
   "make_targets": {
-    "win32": ["squirrel", "zip"],
-    "darwin": ["dmg", "zip"],
-    "linux": ["deb", "rpm", "zip"]
+    "win32": ["zip", "squirrel"],
+    "darwin": ["zip", "dmg"],
+    "linux": ["zip", "deb", "rpm"]
   },
   "makers": [
     {
