@@ -1,7 +1,6 @@
 {
   "name": "HyperChat-App",
   "productName": "HyperChat",
-  "appName": "HyperChat",
   "version": "1.0.0",
   "description": "HyperChat as an electron app.",
   "main": "app/init.js",
