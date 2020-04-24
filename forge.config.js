@@ -2,7 +2,6 @@ const packageJSON = require('./package.json');
 module.exports = {
   "packagerConfig": {
     "name": `${packageJSON.productName}`,
-    "executableName": `${packageJSON.productName}`,
     "icon": "./page/assets/favicon"
   },
   "make_targets": {
@@ -26,15 +25,21 @@ module.exports = {
     },
     {
       "name": "@electron-forge/maker-deb",
-      "config": {}
+      "config": {
+        "name": `${packageJSON.productName}`
+      }
     },
     {
       "name": "@electron-forge/maker-dmg",
-      "config": {}
+      "config": {
+        "name": `${packageJSON.productName}`
+      }
     },
     {
       "name": "@electron-forge/maker-rpm",
-      "config": {}
+      "config": {
+        "name": `${packageJSON.productName}`
+      }
     }
   ]
 }
