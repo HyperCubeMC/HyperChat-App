@@ -13,7 +13,7 @@ module.exports = {
     {
       "name": "@electron-forge/maker-squirrel",
       "config": {
-        "name": `${packageJSON.productName}`
+        "name": `${packageJSON.productName}`,
         "setupExe": `${packageJSON.productName}-${packageJSON.version}-Setup.exe`,
         "setupIcon": "./page/assets/favicon.ico",
         "icon": "./page/assets/favicon.ico"
