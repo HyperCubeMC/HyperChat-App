@@ -4,16 +4,18 @@ module.exports = {
     "icon": "./page/assets/favicon"
   },
   "make_targets": {
-    "win32": ["squirrel"],
-    "darwin": ["zip", "dmg"],
-    "linux": ["deb", "rpm", "flatpak", "snap"]
+    "win32": ["squirrel", "zip"],
+    "darwin": ["dmg", "zip"],
+    "linux": ["deb", "rpm", "zip"]
   },
   "makers": [
     {
       "name": "@electron-forge/maker-squirrel",
       "config": {
         "setupExe": `${packageJSON.productName}-${packageJSON.version}-Setup.exe`,
-        "setupIcon": "./page/assets/favicon.ico"
+        "setupIcon": "./page/assets/favicon.ico",
+        "iconUrl": "./page/assets/favicon.ico",
+        "loadingGif": "./app/assets/Installing.gif"
       }
     },
     {

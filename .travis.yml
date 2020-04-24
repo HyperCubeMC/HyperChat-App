@@ -23,6 +23,8 @@ jobs:
       token: $GITHUB_TOKEN
       file:
         - ./out/make/squirrel.windows/x64/HyperChat-1.0.0-Setup.exe
+        - ./out/make/squirrel.windows/x64/HyperChat-1.0.0-full.nupkg
+        - ./out/make/squirrel.windows/x64/RELEASES
         - ./out/make/zip/win32/x64/HyperChat-win32-x64-1.0.0.zip
       on:
         repo: hypercubemc-github/HyperChat-Electron-App
@@ -38,15 +40,9 @@ jobs:
       directories:
         - node_modules
         - $HOME/.cache/electron
+
   - os: osx
     osx_image: xcode11.3
-    addons:
-      apt:
-        packages:
-        - fakeroot
-        - rpm
-        - unzip
-        - zip
 
     install:
       - npm install
@@ -81,6 +77,7 @@ jobs:
       directories:
         - node_modules
         - $HOME/.cache/electron
+
   - os: linux
     dist: bionic
     addons:
@@ -108,9 +105,9 @@ jobs:
       provider: releases
       token: $GITHUB_TOKEN
       file:
-        - ./out/make/zip/linux/x64/HyperChat-linux-x64-1.0.0.zip
         - ./out/make/deb/x64/hyperchat_1.0.0_amd64.deb
         - ./out/make/rpm/x64/HyperChat-1.0.0-1.x86_64.rpm
+        - ./out/make/zip/linux/x64/HyperChat-linux-x64-1.0.0.zip
       on:
         repo: hypercubemc-github/HyperChat-Electron-App
       tag_name: $TRAVIS_BUILD_NUMBER
