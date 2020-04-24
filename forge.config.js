@@ -14,7 +14,7 @@ module.exports = {
       "config": {
         "setupExe": `${packageJSON.productName}-${packageJSON.version}-Setup.exe`,
         "setupIcon": "./page/assets/favicon.ico",
-        "iconUrl": "./page/assets/favicon.ico"
+        "icon": "./page/assets/favicon.ico"
       }
     },
     {
