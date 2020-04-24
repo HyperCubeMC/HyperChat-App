@@ -7,7 +7,6 @@ jobs:
   - os: windows
     install:
       - npm install
-      - npm update
 
     script:
       - electron-forge make
@@ -46,7 +45,6 @@ jobs:
 
     install:
       - npm install
-      - npm update
       - npm install macos-alias
 
     script:
@@ -91,7 +89,6 @@ jobs:
 
     install:
       - npm install
-      - npm update
 
     script:
       - electron-forge make
