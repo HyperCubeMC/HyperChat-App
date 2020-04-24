@@ -1,4 +1,4 @@
-const { contextBridge, ipcRenderer } = require('electron')
+const { contextBridge, ipcRenderer } = require('electron');
 const customTitlebar = require('custom-electron-titlebar');
 window.onload = function () {
   const titlebar = new customTitlebar.Titlebar({
