@@ -28,7 +28,8 @@ module.exports = {
       "name": "@electron-forge/maker-deb",
       "config": {
         "options": {
-          "name": `${packageJSON.productName}`
+          "name": `${packageJSON.productName}`,
+          "bin": `${packageJSON.productName}`
         }
       }
     },
