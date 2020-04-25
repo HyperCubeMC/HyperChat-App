@@ -26,6 +26,7 @@ jobs:
 
       install:
         - npm install
+        - npm install macos-alias
 
       script:
         - npm run make
