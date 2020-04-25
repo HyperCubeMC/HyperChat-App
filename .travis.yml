@@ -13,7 +13,7 @@ jobs:
       script:
         - npm run make
         - mkdir windows-out
-        - cp -R .\out\* .\windows-out\
+        - cp -R ./out/* ./windows-out/
 
       workspaces:
         create:
