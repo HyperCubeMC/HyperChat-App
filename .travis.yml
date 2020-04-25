@@ -6,23 +6,22 @@ jobs:
   include:
     - stage: Build
       os: windows
-      workspaces:
-        create:
-          name: windows-workspace
-          paths: .
 
       install:
         - npm install
 
       script:
         - npm run make
+        - mkdir windows-out
+        - copy .\out\* windows-out
+
+      workspaces:
+        create:
+          name: windows-out
+          paths: .\windows-out
 
     - os: osx
       osx_image: xcode11.3
-      workspaces:
-        create:
-          name: osx-workspace
-          paths: .
 
       install:
         - npm install
@@ -30,13 +29,16 @@ jobs:
 
       script:
         - npm run make
+        - mkdir osx-out
+        - cp ./out/* osx-out
+
+      workspaces:
+        create:
+          name: osx-out
+          paths: ./osx-out
 
     - os: linux
       dist: bionic
-      workspaces:
-        create:
-          name: linux-workspace
-          paths: .
 
       addons:
         apt:
@@ -51,15 +53,22 @@ jobs:
 
       script:
         - npm run make
+        - mkdir linux-out
+        - cp ./out/* linux-out
+
+      workspaces:
+        create:
+          name: linux-out
+          paths: ./linux-out
 
     - stage: Deploy
       os: linux
       dist: bionic
       workspaces:
         use:
-          - windows-workspace
-          - osx-workspace
-          - linux-workspace
+          - windows-out
+          - osx-out
+          - linux-out
       git:
         clone: false
 
@@ -76,15 +85,15 @@ jobs:
         provider: releases
         token: $GITHUB_TOKEN
         file:
-          - ./out/make/squirrel.windows/x64/HyperChat-1.0.0-Setup.exe
-          - ./out/make/squirrel.windows/x64/HyperChat-1.0.0-full.nupkg
-          - ./out/make/squirrel.windows/x64/RELEASES
-          - ./out/make/zip/win32/x64/HyperChat-win32-x64-1.0.0.zip
-          - ./out/make/HyperChat-1.0.0.dmg
-          - ./out/make/zip/darwin/x64/HyperChat-darwin-x64-1.0.0.zip
-          - ./out/make/deb/x64/hyperchat_1.0.0_amd64.deb
-          - ./out/make/rpm/x64/HyperChat-1.0.0-1.x86_64.rpm
-          - ./out/make/zip/linux/x64/HyperChat-linux-x64-1.0.0.zip
+          - ./windows-out/make/squirrel.windows/x64/HyperChat-1.0.0-Setup.exe
+          - ./windows-out/make/squirrel.windows/x64/HyperChat-1.0.0-full.nupkg
+          - ./windows-out/make/squirrel.windows/x64/RELEASES
+          - ./windows-out/make/zip/win32/x64/HyperChat-win32-x64-1.0.0.zip
+          - ./osx-out/make/HyperChat-1.0.0.dmg
+          - ./osx-out/make/zip/darwin/x64/HyperChat-darwin-x64-1.0.0.zip
+          - ./linux-out/make/deb/x64/hyperchat_1.0.0_amd64.deb
+          - ./linux-out/make/rpm/x64/HyperChat-1.0.0-1.x86_64.rpm
+          - ./linux-out/make/zip/linux/x64/HyperChat-linux-x64-1.0.0.zip
         on:
           repo: hypercubemc-github/HyperChat-App
         tag_name: $TRAVIS_BUILD_NUMBER
