@@ -9,7 +9,8 @@
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
-    "lint": "echo \"No linting configured\""
+    "lint": "echo \"No linting configured.\"",
+    "test": "echo \"No tests configured.\""
   },
   "repository": {
     "type": "git",
@@ -21,7 +22,6 @@
     "forge": "./forge.config.js"
   },
   "dependencies": {
-    "@electron-forge/maker-zip": "^6.0.0-beta.50",
     "custom-electron-titlebar": "^3.2.2-hotfix62",
     "electron-squirrel-startup": "^1.0.0"
   },
@@ -31,6 +31,7 @@
     "@electron-forge/maker-dmg": "^6.0.0-beta.50",
     "@electron-forge/maker-rpm": "^6.0.0-beta.50",
     "@electron-forge/maker-squirrel": "^6.0.0-beta.50",
+    "@electron-forge/maker-zip": "^6.0.0-beta.50",
     "electron": "^8.2.3"
   }
 }

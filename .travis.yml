@@ -4,119 +4,86 @@ node_js:
   - node
 jobs:
   include:
-  - os: windows
-    install:
-      - npm install
+    - stage: Build
+      os: windows
+      workspaces:
+        create:
+          name: windows-workspace
 
-    script:
-      - electron-forge make
+      install:
+        - npm install
 
-    before_deploy:
-      - echo "$TRAVIS_BUILD_NUMBER" "$TRAVIS_COMMIT"
-      - git config --local user.name "$USER_NAME"
-      - git config --local user.email "$USER_EMAIL"
-      - git tag "$TRAVIS_BUILD_NUMBER" "$TRAVIS_COMMIT"
+      script:
+        - npm make
 
-    deploy:
-      provider: releases
-      token: $GITHUB_TOKEN
-      file:
-        - ./out/make/squirrel.windows/x64/HyperChat-1.0.0-Setup.exe
-        - ./out/make/squirrel.windows/x64/HyperChat-1.0.0-full.nupkg
-        - ./out/make/squirrel.windows/x64/RELEASES
-        - ./out/make/zip/win32/x64/HyperChat-win32-x64-1.0.0.zip
-      on:
-        repo: hypercubemc-github/HyperChat-App
-      tag_name: $TRAVIS_BUILD_NUMBER
-      target_commitish: $TRAVIS_COMMIT
-      name: HyperChat Electron App Build $TRAVIS_BUILD_NUMBER
-      edge: true
+    - os: osx
+      osx_image: xcode11.3
+      workspaces:
+        create:
+          name: osx-workspace
 
-    env:
-      - CACHE_NAME=WINDOWS
+      install:
+        - npm install
 
-    cache:
-      npm: true
-      directories:
-        - $HOME/.cache/electron
+      script:
+        - npm make
 
-  - os: osx
-    osx_image: xcode11.3
+    - os: linux
+      dist: bionic
+      workspaces:
+        create:
+          name: linux-workspace
 
-    install:
-      - npm install
-      - npm install macos-alias
+      addons:
+        apt:
+          packages:
+          - fakeroot
+          - rpm
+          - unzip
+          - zip
 
-    script:
-      - electron-forge make
+      install:
+        - npm install
 
-    before_deploy:
-      - echo "$TRAVIS_BUILD_NUMBER" "$TRAVIS_COMMIT"
-      - git config --local user.name "$USER_NAME"
-      - git config --local user.email "$USER_EMAIL"
-      - git tag "$TRAVIS_BUILD_NUMBER" "$TRAVIS_COMMIT"
+      script:
+        - npm make
 
-    deploy:
-      provider: releases
-      token: $GITHUB_TOKEN
-      file:
-        - ./out/make/HyperChat-1.0.0.dmg
-        - ./out/make/zip/darwin/x64/HyperChat-darwin-x64-1.0.0.zip
-      on:
-        repo: hypercubemc-github/HyperChat-App
-      tag_name: $TRAVIS_BUILD_NUMBER
-      target_commitish: $TRAVIS_COMMIT
-      name: HyperChat Electron App Build $TRAVIS_BUILD_NUMBER
-      edge: true
+    - stage: Deploy
+      os: linux
+      dist: bionic
+      workspaces:
+        use:
+          - windows-workspace
+          - osx-workspace
+          - linux-workspace
+      git:
+        clone: false
 
-    env:
-      - CACHE_NAME=OSX
+      script:
+        - ls -laR
 
-    cache:
-      npm: true
-      directories:
-        - $HOME/.cache/electron
+      before_deploy:
+        - echo "$TRAVIS_BUILD_NUMBER" "$TRAVIS_COMMIT"
+        - git config --local user.name "$USER_NAME"
+        - git config --local user.email "$USER_EMAIL"
+        - git tag "$TRAVIS_BUILD_NUMBER" "$TRAVIS_COMMIT"
 
-  - os: linux
-    dist: bionic
-    addons:
-      apt:
-        packages:
-        - fakeroot
-        - rpm
-        - unzip
-        - zip
-
-    install:
-      - npm install
-
-    script:
-      - electron-forge make
-
-    before_deploy:
-      - echo "$TRAVIS_BUILD_NUMBER" "$TRAVIS_COMMIT"
-      - git config --local user.name "$USER_NAME"
-      - git config --local user.email "$USER_EMAIL"
-      - git tag "$TRAVIS_BUILD_NUMBER" "$TRAVIS_COMMIT"
-
-    deploy:
-      provider: releases
-      token: $GITHUB_TOKEN
-      file:
-        - ./out/make/deb/x64/hyperchat_1.0.0_amd64.deb
-        - ./out/make/rpm/x64/HyperChat-1.0.0-1.x86_64.rpm
-        - ./out/make/zip/linux/x64/HyperChat-linux-x64-1.0.0.zip
-      on:
-        repo: hypercubemc-github/HyperChat-App
-      tag_name: $TRAVIS_BUILD_NUMBER
-      target_commitish: $TRAVIS_COMMIT
-      name: HyperChat Electron App Build $TRAVIS_BUILD_NUMBER
-      edge: true
-
-    env:
-      - CACHE_NAME=LINUX
-
-    cache:
-      npm: true
-      directories:
-        - $HOME/.cache/electron
+      deploy:
+        provider: releases
+        token: $GITHUB_TOKEN
+        file:
+          - ./out/make/squirrel.windows/x64/HyperChat-1.0.0-Setup.exe
+          - ./out/make/squirrel.windows/x64/HyperChat-1.0.0-full.nupkg
+          - ./out/make/squirrel.windows/x64/RELEASES
+          - ./out/make/zip/win32/x64/HyperChat-win32-x64-1.0.0.zip
+          - ./out/make/HyperChat-1.0.0.dmg
+          - ./out/make/zip/darwin/x64/HyperChat-darwin-x64-1.0.0.zip
+          - ./out/make/deb/x64/hyperchat_1.0.0_amd64.deb
+          - ./out/make/rpm/x64/HyperChat-1.0.0-1.x86_64.rpm
+          - ./out/make/zip/linux/x64/HyperChat-linux-x64-1.0.0.zip
+        on:
+          repo: hypercubemc-github/HyperChat-App
+        tag_name: $TRAVIS_BUILD_NUMBER
+        target_commitish: $TRAVIS_COMMIT
+        name: HyperChat Electron App Build $TRAVIS_BUILD_NUMBER
+        edge: true
