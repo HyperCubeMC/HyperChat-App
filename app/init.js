@@ -22,7 +22,7 @@ const createWindow = () => {
     titleBarStyle: 'hidden'
   });
   mainWindow.setMenuBarVisibility(false);
-  // and load the index.html of the app.
+  // And load the index.html of the app.
   mainWindow.loadFile('./page/chat.html');
 };
 
