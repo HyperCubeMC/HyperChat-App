@@ -2,7 +2,6 @@
   "name": "HyperChat-App",
   "productName": "HyperChat",
   "version": "1.0.0",
-  "tag": "84",
   "description": "HyperChat as an electron app.",
   "main": "./app/init.js",
   "scripts": {
@@ -22,6 +21,7 @@
     "forge": "./forge.config.js"
   },
   "dependencies": {
+    "@electron-forge/maker-zip": "^6.0.0-beta.50",
     "custom-electron-titlebar": "^3.2.2-hotfix62",
     "electron-squirrel-startup": "^1.0.0"
   },

@@ -29,61 +29,6 @@ const createWindow = () => {
   });
 };
 
-const updater = () => {
-  const appTag = require('../package.json').tag;
-  const appVersion = '1.' + appTag + '.0';
-
-  // The url that the application is going to query for new release
-  const autoUpdateURL = 'https://api.update.rocks/update/github.com/hypercubemc-github/HyperChat-App/stable/' + process.platform + '/' + appVersion;
-
-  if (process.platform === 'linux') {
-    console.log('Auto updates not available on linux.');
-  }
-  else {
-    windowsUpdate();
-  }
-
-  function windowsUpdate() {
-    autoUpdater.on(
-      'error',
-      (err) => console.log(`Update error: ${err.message}`));
-
-    autoUpdater.on(
-      'checking-for-update',
-      () => console.log('Checking for updates...'));
-
-    autoUpdater.on(
-      'update-available',
-      () => console.log('Update available!'));
-
-    autoUpdater.on(
-      'update-not-available',
-      () => console.log('No update available.'));
-
-    // Ask the user if update is available
-    autoUpdater.on(
-      'update-downloaded',
-      (event, releaseNotes, releaseName) => {
-        console.log('Update downloaded!')
-        dialog.showMessageBox({
-          type: 'question',
-          buttons: ['Update', 'Cancel'],
-          defaultId: 0,
-          message: `Version ${releaseName} is available, do you want to install it now?`,
-          title: 'Update available'
-        }, response => {
-          if (response === 0) {
-            autoUpdater.quitAndInstall()
-          }
-        });
-      }
-    )
-
-    autoUpdater.setFeedURL(autoUpdateURL);
-    autoUpdater.checkForUpdates();
-  }
-}
-
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
@@ -92,7 +37,6 @@ app.on('ready', () => {
   //   console.log("Set title bar color: " + arg);
   // })
   createWindow();
-  updater();
 });
 
 // Quit when all windows are closed.
