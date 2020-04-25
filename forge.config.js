@@ -5,9 +5,9 @@ module.exports = {
     "icon": "./page/assets/favicon"
   },
   "make_targets": {
-    "win32": ["squirrel", "zip"],
-    "darwin": ["dmg", "zip"],
-    "linux": ["deb", "rpm", "zip"]
+    "win32": ["squirrel"],
+    "darwin": ["dmg"],
+    "linux": ["deb", "rpm"]
   },
   "makers": [
     {
@@ -18,10 +18,6 @@ module.exports = {
         "setupIcon": "./page/assets/favicon.ico",
         "icon": "./page/assets/favicon.ico"
       }
-    },
-    {
-      "name": "@electron-forge/maker-zip",
-      "config": {}
     },
     {
       "name": "@electron-forge/maker-deb",
