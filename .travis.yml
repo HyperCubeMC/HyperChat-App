@@ -14,7 +14,7 @@ jobs:
         - npm install
 
       script:
-        - npm make
+        - npm run make
 
     - os: osx
       osx_image: xcode11.3
@@ -26,7 +26,7 @@ jobs:
         - npm install
 
       script:
-        - npm make
+        - npm run make
 
     - os: linux
       dist: bionic
@@ -46,7 +46,7 @@ jobs:
         - npm install
 
       script:
-        - npm make
+        - npm run make
 
     - stage: Deploy
       os: linux
