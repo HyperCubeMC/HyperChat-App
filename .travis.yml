@@ -12,7 +12,7 @@ jobs:
           paths: .
 
       install:
-        - npm ci
+        - npm install
 
       script:
         - npm run make
@@ -25,7 +25,7 @@ jobs:
           paths: .
 
       install:
-        - npm ci
+        - npm install
 
       script:
         - npm run make
@@ -46,7 +46,7 @@ jobs:
           - zip
 
       install:
-        - npm ci
+        - npm install
 
       script:
         - npm run make
