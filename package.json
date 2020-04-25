@@ -2,7 +2,7 @@
   "name": "HyperChat-App",
   "productName": "HyperChat",
   "version": "1.0.0",
-  "tag": "81",
+  "tag": "83",
   "description": "HyperChat as an electron app.",
   "main": "./app/init.js",
   "scripts": {
