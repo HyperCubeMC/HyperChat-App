@@ -18,8 +18,7 @@ const createWindow = () => {
       contextIsolation: true,
       preload: path.join(__dirname, './preload.js')
     },
-    frame: false,
-    titleBarStyle: 'hidden'
+    frame: false
   });
   mainWindow.setMenuBarVisibility(false);
   // And load the index.html of the app.
