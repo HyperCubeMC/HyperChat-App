@@ -13,7 +13,7 @@ jobs:
       script:
         - npm run make
         - mkdir windows-out
-        - copy .\out\* windows-out
+        - copy .\out\* .\windows-out\
 
       workspaces:
         create:
@@ -30,12 +30,12 @@ jobs:
       script:
         - npm run make
         - mkdir osx-out
-        - cp ./out/* osx-out
+        - cp ./out/* ./osx-out/
 
       workspaces:
         create:
           name: osx-out
-          paths: ./osx-out
+          paths: ./osx-outs
 
     - os: linux
       dist: bionic
@@ -54,7 +54,7 @@ jobs:
       script:
         - npm run make
         - mkdir linux-out
-        - cp ./out/* linux-out
+        - cp ./out/* ./linux-out/
 
       workspaces:
         create:
