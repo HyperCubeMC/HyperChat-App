@@ -11,7 +11,7 @@ jobs:
           name: windows-workspace
 
       install:
-        - npm install
+        - npm ci
 
       script:
         - npm run make
@@ -23,7 +23,7 @@ jobs:
           name: osx-workspace
 
       install:
-        - npm install
+        - npm ci
 
       script:
         - npm run make
@@ -43,7 +43,7 @@ jobs:
           - zip
 
       install:
-        - npm install
+        - npm ci
 
       script:
         - npm run make
