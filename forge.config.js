@@ -36,7 +36,7 @@ module.exports = {
       "name": "@electron-forge/maker-dmg",
       "config": {
         "name": `${packageJSON.productName}`,
-        "out": `./out/make/${packageJSON.productName}-1.0.0.dmg`
+        "debug": "true"
       }
     },
     {
