@@ -9,6 +9,7 @@ jobs:
       workspaces:
         create:
           name: windows-workspace
+          path: .
 
       install:
         - npm ci
@@ -21,6 +22,7 @@ jobs:
       workspaces:
         create:
           name: osx-workspace
+          path: .
 
       install:
         - npm ci
