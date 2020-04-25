@@ -49,7 +49,6 @@ jobs:
 
     script:
       - electron-forge make
-      - ls -laR
 
     before_deploy:
       - echo "$TRAVIS_BUILD_NUMBER" "$TRAVIS_COMMIT"
