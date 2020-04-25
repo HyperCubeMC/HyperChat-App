@@ -13,16 +13,20 @@ const createWindow = () => {
   const mainWindow = new BrowserWindow({
     width: width,
     height: height,
+    frame: false,
+    show: false,
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,
       preload: path.join(__dirname, './preload.js')
-    },
-    frame: false
+    }
   });
   mainWindow.setMenuBarVisibility(false);
   // And load the index.html of the app.
   mainWindow.loadFile('./page/chat.html');
+  mainWindow.webContents.on('did-finish-load', function() {
+    mainWindow.show();
+  });
 };
 
 // This method will be called when Electron has finished
