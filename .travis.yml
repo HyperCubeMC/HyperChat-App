@@ -35,6 +35,7 @@ jobs:
       workspaces:
         create:
           name: linux-workspace
+          path: .
 
       addons:
         apt:
