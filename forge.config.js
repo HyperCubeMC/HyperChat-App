@@ -34,10 +34,7 @@ module.exports = {
     },
     {
       "name": "@electron-forge/maker-dmg",
-      "config": {
-        "name": `${packageJSON.productName}`,
-        "artifactName": `${packageJSON.productName}-1.0.0`
-      }
+      "config": {}
     },
     {
       "name": "@electron-forge/maker-rpm",
