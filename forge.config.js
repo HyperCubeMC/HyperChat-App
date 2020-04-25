@@ -5,9 +5,9 @@ module.exports = {
     "icon": "./page/assets/favicon"
   },
   "make_targets": {
-    "win32": ["zip", "squirrel"],
-    "darwin": ["zip", "dmg"],
-    "linux": ["zip", "deb", "rpm"]
+    "win32": ["squirrel", "zip"],
+    "darwin": ["dmg", "zip"],
+    "linux": ["deb", "rpm", "zip"]
   },
   "makers": [
     {
@@ -35,7 +35,8 @@ module.exports = {
     {
       "name": "@electron-forge/maker-dmg",
       "config": {
-        "name": `${packageJSON.productName}`
+        "name": `${packageJSON.productName}`,
+        "out": `./out/make/${packageJSON.productName}-1.0.0.dmg`
       }
     },
     {
