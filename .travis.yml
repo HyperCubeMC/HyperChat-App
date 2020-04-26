@@ -90,8 +90,7 @@ jobs:
           - linux-out
 
       install: skip
-      script:
-        - ls -R
+      script: skip
 
       before_deploy:
         - echo "$TRAVIS_BUILD_NUMBER" "$TRAVIS_COMMIT"
