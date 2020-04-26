@@ -36,7 +36,7 @@ jobs:
         - npm run make
         - mkdir osx-out
         - cp -R out/* osx-out/
-        - alias tar=gtar
+        - alias tar='gtar'
 
       workspaces:
         create:
