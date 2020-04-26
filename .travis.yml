@@ -62,8 +62,7 @@ jobs:
           paths: ./linux-out
 
     - stage: Deploy
-      os: osx
-      osx_image: xcode11.3
+      os: windows
 
       workspaces:
         use:
