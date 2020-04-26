@@ -23,11 +23,6 @@ jobs:
     - os: osx
       osx_image: xcode11.3
 
-      addons:
-        homebrew:
-          packages:
-          - gnu-tar
-
       install:
         - npm install
         - npm install macos-alias
@@ -36,7 +31,6 @@ jobs:
         - npm run make
         - mkdir osx-out
         - cp -R out/* osx-out/
-        - PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 
       workspaces:
         create:
@@ -68,8 +62,9 @@ jobs:
           paths: ./linux-out
 
     - stage: Deploy
-      os: linux
-      dist: bionic
+      os: osx
+      osx_image: xcode11.3
+
       workspaces:
         use:
           - windows-out
