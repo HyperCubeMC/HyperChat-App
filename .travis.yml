@@ -46,8 +46,8 @@ jobs:
         create:
           name: osx-out
           paths:
-            - ./osx-out/make/HyperChat-1.0.0.dmg
-            - ./osx-out/make/zip/darwin/x64/HyperChat-darwin-x64-1.0.0.zip
+            - osx-out/make/HyperChat-1.0.0.dmg
+            - osx-out/make/zip/darwin/x64/HyperChat-darwin-x64-1.0.0.zip
 
     - os: linux
       dist: bionic
@@ -80,19 +80,16 @@ jobs:
       os: linux
       dist: bionic
 
-      before_install:
-        - tar() { tar -xzf $2; }
-
-      install: true
-
       workspaces:
         use:
           - windows-out
           - osx-out
           - linux-out
 
+      install: skip
+      script: skip
+
       before_deploy:
-        - ls -R
         - echo "$TRAVIS_BUILD_NUMBER" "$TRAVIS_COMMIT"
         - git config --local user.name "$USER_NAME"
         - git config --local user.email "$USER_EMAIL"
