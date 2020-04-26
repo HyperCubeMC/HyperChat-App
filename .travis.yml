@@ -41,7 +41,6 @@ jobs:
         - mkdir osx-out
         - cp -R out/* osx-out/
         - PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
-        - tar() { tar $1 $2 $3 $4 --strip-components=1; }
 
       workspaces:
         create:
@@ -78,8 +77,13 @@ jobs:
             - ./linux-out/make/zip/linux/x64/HyperChat-linux-x64-1.0.0.zip
 
     - stage: Deploy
-      os: linux
-      dist: bionic
+      os: osx
+      osx_image: xcode11.3
+
+      addons:
+        homebrew:
+          packages:
+            - gnu-tar
 
       workspaces:
         use:
@@ -88,7 +92,8 @@ jobs:
           - linux-out
 
       install: skip
-      script: skip
+      script:
+        - PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
 
       before_deploy:
         - echo "$TRAVIS_BUILD_NUMBER" "$TRAVIS_COMMIT"
