@@ -38,8 +38,12 @@ jobs:
 
       script:
         - npm run make
+        - echo $USER
+        - id -Gn
+        - sudo sed -i '/\/home/s/^/#/' /etc/auto_master
+        - sudo automaster
         - sudo mkdir -p /home/travis/build/hypercubemc-github/HyperChat-App/osx-out/
-        - sudo chown travis:travis /home/travis/build/hypercubemc-github/HyperChat-App/osx-out/
+        - sudo chown travis /home/travis/build/hypercubemc-github/HyperChat-App/osx-out/
         - cp -R out/* /home/travis/build/hypercubemc-github/HyperChat-App/osx-out/
         - PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
 
