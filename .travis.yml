@@ -18,7 +18,7 @@ jobs:
       workspaces:
         create:
           name: windows-out
-          paths: .\windows-out
+          paths: ./windows-out
 
     - os: osx
       osx_image: xcode11.3
