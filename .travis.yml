@@ -18,7 +18,11 @@ jobs:
       workspaces:
         create:
           name: windows-out
-          paths: ./windows-out
+          paths:
+            - ./windows-out/make/squirrel.windows/x64/HyperChat-1.0.0-Setup.exe
+            - ./windows-out/make/squirrel.windows/x64/HyperChat-1.0.0-full.nupkg
+            - ./windows-out/make/squirrel.windows/x64/RELEASES
+            - ./windows-out/make/zip/win32/x64/HyperChat-win32-x64-1.0.0.zip
 
     - os: osx
       osx_image: xcode11.3
@@ -35,7 +39,9 @@ jobs:
       workspaces:
         create:
           name: osx-out
-          paths: ./osx-out
+          paths:
+            - ./osx-out/make/HyperChat-1.0.0.dmg
+            - ./osx-out/make/zip/darwin/x64/HyperChat-darwin-x64-1.0.0.zip
 
     - os: linux
       dist: bionic
@@ -59,10 +65,14 @@ jobs:
       workspaces:
         create:
           name: linux-out
-          paths: ./linux-out
+          paths:
+            - ./linux-out/make/deb/x64/hyperchat_1.0.0_amd64.deb
+            - ./linux-out/make/rpm/x64/HyperChat-1.0.0-1.x86_64.rpm
+            - ./linux-out/make/zip/linux/x64/HyperChat-linux-x64-1.0.0.zip
 
     - stage: Deploy
-      os: windows
+      os: linux
+      dist: bionic
 
       workspaces:
         use:
@@ -71,7 +81,7 @@ jobs:
           - linux-out
 
       script:
-        - ls -laR
+        - ls -R
 
       before_deploy:
         - echo "$TRAVIS_BUILD_NUMBER" "$TRAVIS_COMMIT"
