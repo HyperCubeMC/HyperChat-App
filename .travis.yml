@@ -80,19 +80,19 @@ jobs:
       os: linux
       dist: bionic
 
+      install: true
+
+      script:
+        - tar() { tar -xzf $2; }
+
       workspaces:
         use:
           - windows-out
           - osx-out
           - linux-out
 
-      install: true
-
-      script:
-        - ls -R
-        - tar() { tar -xzf $2; }
-
       before_deploy:
+        - ls -R
         - echo "$TRAVIS_BUILD_NUMBER" "$TRAVIS_COMMIT"
         - git config --local user.name "$USER_NAME"
         - git config --local user.email "$USER_EMAIL"
