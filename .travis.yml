@@ -35,6 +35,8 @@ jobs:
         - npm run make
         - mkdir osx-out
         - cp -R out/* osx-out/
+        - brew install gnu-tar
+        - PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
 
       workspaces:
         create:
@@ -80,7 +82,7 @@ jobs:
           - osx-out
           - linux-out
 
-      install: false
+      install: true
 
       script:
         - ls -R
