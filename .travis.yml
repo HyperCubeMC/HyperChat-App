@@ -80,10 +80,10 @@ jobs:
       os: linux
       dist: bionic
 
-      install: true
-
-      script:
+      before_install:
         - tar() { tar -xzf $2; }
+
+      install: true
 
       workspaces:
         use:
