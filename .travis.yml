@@ -23,6 +23,11 @@ jobs:
     - os: osx
       osx_image: xcode11.3
 
+      addons:
+        homebrew:
+          packages:
+          - gnu-tar
+
       install:
         - npm install
         - npm install macos-alias
@@ -31,6 +36,7 @@ jobs:
         - npm run make
         - mkdir osx-out
         - cp -R out/* osx-out/
+        - alias tar=gtar
 
       workspaces:
         create:
@@ -70,9 +76,8 @@ jobs:
           - osx-out
           - linux-out
 
-      # git:
-      #   clone: false
-      # Git clone is left on as it is needed for $USER_NAME and $USER_EMAIL.
+      git:
+        clone: false
 
       script:
         - ls -laR
@@ -87,10 +92,10 @@ jobs:
         provider: releases
         token: $GITHUB_TOKEN
         file:
-          - ./windows-out/make/squirrel.windows/x64/HyperChat-1.0.0-Setup.exe
-          - ./windows-out/make/squirrel.windows/x64/HyperChat-1.0.0-full.nupkg
-          - ./windows-out/make/squirrel.windows/x64/RELEASES
-          - ./windows-out/make/zip/win32/x64/HyperChat-win32-x64-1.0.0.zip
+          - ./C:/Users/travis/build/hypercubemc-github/HyperChat-App/windows-out/make/squirrel.windows/x64/HyperChat-1.0.0-Setup.exe
+          - ./C:/Users/travis/build/hypercubemc-github/HyperChat-App/windows-out/make/squirrel.windows/x64/HyperChat-1.0.0-full.nupkg
+          - ./C:/Users/travis/build/hypercubemc-github/HyperChat-App/windows-out/make/squirrel.windows/x64/RELEASES
+          - ./C:/Users/travis/build/hypercubemc-github/HyperChat-App/windows-out/make/zip/win32/x64/HyperChat-win32-x64-1.0.0.zip
           - ./osx-out/make/HyperChat-1.0.0.dmg
           - ./osx-out/make/zip/darwin/x64/HyperChat-darwin-x64-1.0.0.zip
           - ./linux-out/make/deb/x64/hyperchat_1.0.0_amd64.deb
