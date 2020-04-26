@@ -69,8 +69,10 @@ jobs:
           - windows-out
           - osx-out
           - linux-out
-      git:
-        clone: false
+
+      # git:
+      #   clone: false
+      # Git clone is left on as it is needed for $USER_NAME and $USER_EMAIL.
 
       script:
         - ls -laR
