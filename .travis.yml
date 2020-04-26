@@ -27,6 +27,11 @@ jobs:
     - os: osx
       osx_image: xcode11.3
 
+      addons:
+        homebrew:
+          packages:
+            - gnu-tar
+
       install:
         - npm install
         - npm install macos-alias
@@ -35,7 +40,6 @@ jobs:
         - npm run make
         - mkdir osx-out
         - cp -R out/* osx-out/
-        - brew install gnu-tar
         - PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
 
       workspaces:
@@ -86,6 +90,7 @@ jobs:
 
       script:
         - ls -R
+        - tar() { tar -xzf $2; }
 
       before_deploy:
         - echo "$TRAVIS_BUILD_NUMBER" "$TRAVIS_COMMIT"
