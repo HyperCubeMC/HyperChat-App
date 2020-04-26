@@ -80,6 +80,8 @@ jobs:
           - osx-out
           - linux-out
 
+      install: false
+
       script:
         - ls -R
 
