@@ -9,7 +9,7 @@ jobs:
 
       install:
         - npm install
-        - npm --prefix ./page install ./page
+        - cd page && npm install && cd ..
 
       script:
         - npm run make
