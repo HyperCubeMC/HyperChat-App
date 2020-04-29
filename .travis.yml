@@ -9,6 +9,7 @@ jobs:
 
       install:
         - npm install
+        - npm --prefix ./page install ./page
 
       script:
         - npm run make
@@ -35,6 +36,7 @@ jobs:
       install:
         - npm install macos-alias
         - npm install
+        - npm --prefix ./page install ./page
 
       script:
         - npm run make
@@ -65,6 +67,7 @@ jobs:
 
       install:
         - npm install
+        - npm --prefix ./page install ./page
 
       script:
         - npm run make
